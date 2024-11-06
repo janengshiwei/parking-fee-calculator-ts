@@ -11,6 +11,7 @@ export class FixedFeePerXMinutes extends BaseFee {
     }
 
     calculateCost = (fit: { isFit: boolean; startTime?: LocalTime; endTime?: LocalTime; }): number => {
+        // if isFit is false, return 0
         if(!fit.isFit) { return 0; }
         if(fit.startTime!.equals(fit.endTime!)) { return this.feePerXMinutes; }
         const timeDiff = fit.startTime!.until(fit.endTime!, ChronoUnit.MINUTES);
