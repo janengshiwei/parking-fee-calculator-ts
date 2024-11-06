@@ -12,8 +12,13 @@ export class BaseFee {
 
   isFit = (startTime: LocalTime, endTime: LocalTime): FitResult => {
     // task #2
-    // TODO: Implement the isFit method
-    return { isFit: false };
+    if (endTime.isBefore(this.startTime) || startTime.isAfter(this.endTime)) {
+      return { isFit: false };
+    }
+
+    const adjustedStartTime = startTime.isBefore(this.startTime) ? this.startTime : startTime;
+    const adjustedEndTime = endTime.isAfter(this.endTime) ? this.endTime : endTime;
+    return { isFit: true, startTime: adjustedStartTime, endTime: adjustedEndTime };
   };
 
   calculateCost = (fit: FitResult): number => {
