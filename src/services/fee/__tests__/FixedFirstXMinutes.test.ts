@@ -31,5 +31,11 @@ describe("FixedFirstXMinutes", () => {
 
     // task #1
     // TODO: implement more test cases for the calculateCost method
+    it('should return x minutes fee for parking duration 10:00 to 12:00', () => {
+      const endTime = LocalTime.of(12, 0);
+      expect(
+        fixedFeePerXMinutes.calculateCost({ ...mockFitResult, endTime })
+      ).toBe(configXMinutesFee);
+    });
   });
 });
